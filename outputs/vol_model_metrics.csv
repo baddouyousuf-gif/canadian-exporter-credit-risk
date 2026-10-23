@@ -1,0 +1,5 @@
+,CV RMSE (vol pts),RMSE (vol pts),MAE (vol pts),Bias (vol pts)
+Naive (last month),22.396,16.855,10.998,-0.002
+HAR regression,19.728,14.191,9.633,0.698
+HAR-X regression,18.408,14.045,9.406,-0.864
+Gradient boosting,18.991,14.076,9.559,0.22

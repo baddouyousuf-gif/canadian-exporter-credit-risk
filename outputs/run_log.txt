@@ -1,0 +1,50 @@
+Data: 20 firms + TSX, 2015-01-02 to 2026-10-23
+
+Volatility models
+                     CV RMSE (vol pts)  RMSE (vol pts)  MAE (vol pts)  Bias (vol pts)
+Naive (last month)              22.40           16.86          11.00           -0.00
+HAR regression                  19.73           14.19           9.63            0.70
+HAR-X regression                18.41           14.05           9.41           -0.86
+Gradient boosting               18.99           14.08           9.56            0.22 
+Champion (by CV): HAR-X regression
+
+Merton (ML vol)
+                        name  equity_vol  asset_vol       DD      PD
+BLDP.TO       Ballard Power      0.7422     0.6542   2.9299  0.0017
+FM.TO         First Quantum      0.5894     0.4700   3.1606  0.0008
+DOO.TO                  BRP      0.4574     0.2775   3.2222  0.0006
+MDA.TO            MDA Space      0.5892     0.4796   3.2664  0.0005
+ATS.TO                  ATS      0.4417     0.2718   3.3784  0.0004
+GIL.TO               Gildan      0.4196     0.2717   3.7023  0.0003
+IFP.TO             Interfor      0.3990     0.2393   3.7060  0.0003
+MG.TO                 Magna      0.3524     0.1989   4.0781  0.0003
+TECK-B.TO              Teck      0.4751     0.3946   4.2996  0.0003
+CFP.TO               Canfor      0.3319     0.1877   4.3472  0.0003
+LNR.TO              Linamar      0.3218     0.1931   4.6487  0.0003
+BBD-B.TO         Bombardier      0.4238     0.3543   4.9277  0.0003
+MX.TO              Methanex      0.3421     0.2423   4.9640  0.0003
+NTR.TO              Nutrien      0.2869     0.1964   5.7736  0.0003
+CAE.TO                  CAE      0.3122     0.2389   5.9441  0.0003
+CCO.TO               Cameco      0.5328     0.5163   6.4662  0.0003
+WFG.TO          West Fraser      0.3158     0.2758   7.3534  0.0003
+SAP.TO               Saputo      0.2365     0.1847   8.1231  0.0003
+CCL-B.TO     CCL Industries      0.2188     0.1866  10.1751  0.0003
+CNQ.TO     Canadian Natural      0.2480     0.2258  10.5657  0.0003
+
+Risk measures (C$ millions)
+                               Expected Loss  VaR 99.0%  ES 99.0%  VaR 99.5%  ES 99.5%  VaR 99.9%  ES 99.9%  Economic Capital (VaR 99.9% - EL)
+Baseline (Gaussian copula)             0.19       0.00     19.10      19.11     30.65      36.99     44.79                              36.80
+Historical vol instead of ML           0.38      19.18     30.66      28.75     37.46      41.31     51.07                              40.93
+Fat tails (t copula)                   0.19       0.00     19.05       0.00     38.10      51.17     96.34                              50.98
+Market crash                           6.28      64.00     81.04      75.31     93.09     103.69    122.10                              97.40
+Market crash + fat tails               6.31      85.90    121.41     109.36    146.65     169.98    209.59                             163.67
+
+Validation
+                                      MC EL  MC EL 95% CI (+/-)   Analytic EL  Max |simulated PD - input PD|
+Baseline (Gaussian copula)    1.910091e+05          3290.89829  1.918824e+05                        0.00005
+Historical vol instead of ML  3.831251e+05          4651.67542  3.846398e+05                        0.00005
+Fat tails (t copula)          1.905095e+05          5280.73963  1.918824e+05                        0.00003
+Market crash                  6.282161e+06         19963.80165  6.298600e+06                        0.00030
+Market crash + fat tails      6.308467e+06         25120.42558  6.298600e+06                        0.00021
+
+Done in 13s. Outputs in /home/claude/exporter-credit-risk/outputs
